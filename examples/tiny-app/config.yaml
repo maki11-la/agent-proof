@@ -1,0 +1,4 @@
+feature:
+  beta: false
+service:
+  name: tiny-app

@@ -1,0 +1,46 @@
+name: Bug report
+description: A check, the report, or the CLI did something wrong
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this.
+
+        A proof spec can run any command. Do not paste secrets, tokens, or private paths.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you ran, what you expected, and what the report said.
+      placeholder: agent-proof run proof.yaml exited 0, but the file in the spec was missing.
+    validations:
+      required: true
+  - type: textarea
+    id: spec
+    attributes:
+      label: Spec
+      description: The proof.yaml snippet that misbehaved. Trim it to the check that failed.
+      render: yaml
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Agent Proof version
+      description: Output of `agent-proof --version`.
+      placeholder: agent-proof 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: runtime
+    attributes:
+      label: Python and operating system
+      placeholder: Python 3.12, Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Text report or `--json` output. Remove anything private.
+      render: text

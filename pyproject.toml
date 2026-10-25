@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-proof"
+dynamic = ["version"]
+description = "AI-free CLI that verifies an agent's task-complete claim against a declarative spec."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "maki11-la" }]
+keywords = ["ai-agents", "verification", "cli", "ci", "testing"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: Software Development :: Testing",
+]
+dependencies = ["PyYAML>=6.0.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2"]
+
+[project.urls]
+Homepage = "https://github.com/maki11-la/agent-proof"
+Repository = "https://github.com/maki11-la/agent-proof"
+Issues = "https://github.com/maki11-la/agent-proof/issues"
+
+[project.scripts]
+agent-proof = "agent_proof.cli:main"
+aproof = "agent_proof.cli:main"
+
+[tool.hatch.version]
+path = "src/agent_proof/__init__.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]

@@ -1,0 +1,22 @@
+# Copy into your repository as .github/workflows/agent-proof.yml.
+# The published install is `pip install agent-proof` once the package is on PyPI.
+# Until then, install from a checkout or from git:
+#   pip install "git+https://github.com/maki11-la/agent-proof.git"
+name: agent-proof
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Agent Proof
+        run: python -m pip install agent-proof
+      - name: Run the proof
+        run: agent-proof run proof.yaml

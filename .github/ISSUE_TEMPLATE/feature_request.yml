@@ -1,0 +1,23 @@
+name: Feature request
+description: A check, output format, or workflow Agent Proof does not cover yet
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What claim are you trying to prove, and why the current checks cannot express it?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed spec
+      description: Show the YAML you wish you could write, or the command-line flag you want.
+      render: yaml
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+      description: Other ways you could prove the same thing today, and why they are awkward.

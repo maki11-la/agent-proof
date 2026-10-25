@@ -1,0 +1,25 @@
+# Template: copy into a repository an agent just edited.
+# CI does not run this file. Paths and the base ref depend on your branch.
+version: 1
+name: git gate
+description: Uncommitted source edits, at least one commit since main, and a new report in the diff.
+checks:
+  - name: source tree has uncommitted work
+    type: git
+    paths:
+      - src
+    dirty: true
+
+  - name: branch moved past main
+    type: git
+    since: main
+    paths:
+      - src
+    min_commits: 1
+
+  - name: report exists and is part of the diff
+    type: file
+    path: dist/report.json
+    exists: true
+    min_bytes: 2
+    in_diff: true

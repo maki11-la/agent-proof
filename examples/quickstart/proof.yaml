@@ -1,0 +1,43 @@
+version: 1
+name: quickstart
+root: ../..
+checks:
+  - name: readme exists and states the pitch
+    type: file
+    path: README.md
+    exists: true
+    min_bytes: 400
+    contains: "Agent Proof"
+    matches: "pipx install"
+
+  - name: license is MIT
+    type: file
+    path: LICENSE
+    contains: "MIT License"
+
+  - name: scratch file was not left behind
+    type: file
+    path: scratch.tmp
+    exists: false
+
+  - name: package modules are present
+    type: file
+    glob: src/agent_proof/*.py
+    min_matches: 5
+
+  - name: console script is declared
+    type: file
+    path: pyproject.toml
+    contains: 'agent-proof = "agent_proof.cli:main"'
+
+  - name: sponsors file names the maintainer
+    type: yaml
+    path: .github/FUNDING.yml
+    equals:
+      github: maki11-la
+
+  - name: python runs
+    type: command
+    run: [python3, -c, "print('agent-proof-ok')"]
+    timeout: 15
+    stdout_contains: agent-proof-ok

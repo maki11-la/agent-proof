@@ -1,0 +1,47 @@
+version: 1
+name: tiny-app
+description: Self-contained example. Paths are relative to this directory.
+root: .
+checks:
+  - name: readme names the app
+    type: file
+    path: README.md
+    exists: true
+    min_bytes: 40
+    contains: tiny-app
+
+  - name: scratch file is absent
+    type: file
+    path: scratch.tmp
+    exists: false
+
+  - name: source file says hello
+    type: file
+    glob: src/*.txt
+    min_matches: 1
+    contains: hello
+    min_bytes: 5
+
+  - name: manifest name, port, and first feature
+    type: json
+    path: app.json
+    equals:
+      name: tiny-app
+      server.port: 8080
+      features[0]: read
+    exists:
+      - version
+      - server.host
+
+  - name: beta flag is off
+    type: yaml
+    path: config.yaml
+    equals:
+      feature.beta: false
+      service.name: tiny-app
+
+  - name: greeting command
+    type: command
+    run: [python3, -c, "print('hello tiny-app')"]
+    timeout: 15
+    stdout_contains: hello tiny-app
